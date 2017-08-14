@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.readlearncode</groupId>
-        <artifactId>article-code-examples</artifactId>
+        <artifactId>readlearncode-articles</artifactId>
         <version>1.0</version>
     </parent>
 
