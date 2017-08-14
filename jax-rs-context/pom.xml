@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>jax-rs-context</artifactId>
+    <packaging>war</packaging>
+
+    <parent>
+        <groupId>com.readlearncode</groupId>
+        <artifactId>article-code-examples</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <name>rest-server</name>
+
+    <prerequisites>
+        <maven>3.2.1</maven>
+    </prerequisites>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <javaee-api.version>7.0</javaee-api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee-api.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.6.4</version>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+
+                    <container>
+                        <containerId>liberty</containerId>
+                        <zipUrlInstaller>
+                            <url>
+                                https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/17.0.0.2/wlp-webProfile7-17.0.0.2.zip
+                            </url>
+                            <downloadDir>c:/tmp/download</downloadDir>
+                            <extractDir>c:/tmp/servers</extractDir>
+                        </zipUrlInstaller>
+                    </container>
+
+                    <deployables>
+                        <deployable>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/rest-server</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
