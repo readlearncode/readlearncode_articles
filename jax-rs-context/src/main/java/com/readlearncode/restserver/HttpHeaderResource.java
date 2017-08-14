@@ -1,7 +1,9 @@
 package com.readlearncode.restserver;
 
-import javax.ejb.Stateless;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -13,7 +15,6 @@ import javax.ws.rs.core.Response;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@Stateless
 @Path("/http-headers")
 public class HttpHeaderResource {
 

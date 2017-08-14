@@ -1,6 +1,5 @@
 package com.readlearncode.restserver;
 
-import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.UriInfo;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@Stateless
 @Path("/uri-info")
 public class UriInfoResource {
 
