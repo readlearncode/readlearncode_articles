@@ -5,7 +5,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +20,7 @@ public class BookResource {
     private BookRepository bookRepository;
 
     @GET
+    @Path("all-books")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllBooks() {
         List<Book> books = bookRepository.getAllBooks(); // queries database for all books
@@ -30,6 +30,7 @@ public class BookResource {
     }
 
     @GET
+    @Path("all-new-books")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 //    @Produces({"application/json", "application/xml"})
     public Response getAllNewBooks() {
@@ -41,6 +42,7 @@ public class BookResource {
     }
 
     @GET
+    @Path("book-by")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBookBy(@MatrixParam("author") String author,
                               @MatrixParam("category") String category,
@@ -53,18 +55,21 @@ public class BookResource {
     }
 
     @GET
+    @Path("cart")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCart(@CookieParam("cartId") int cartId) {
         return Response.ok().build();
     }
 
     @GET
+    @Path("referrer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReferrer(@HeaderParam("referer") String referrer) {
         return Response.ok(referrer).build();
     }
 
     @POST
+    @Path("save-book")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveBook(Book book) {
@@ -73,6 +78,7 @@ public class BookResource {
     }
 
     @POST
+    @Path("save")
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveBookF(@FormParam("title") String title,
                               @FormParam("author") String author,
@@ -114,67 +120,5 @@ public class BookResource {
         return Response.ok(new GenericEntity<List<Book>>(books) {
         }).build();
     }
-
-
-public class BookRepository {
-
-    private List<Book> books = new ArrayList<>();
-
-    public List<Book> getAllBooks() {
-        return books;
-    }
-
-    public Book saveBook(Book book) {
-        books.add(book);
-        return book;
-    }
-
-    public Book updateBook(Book book) {
-        // check book contains new data then update otherwise return
-        books.add(book);
-        return book;
-    }
-
-    public Book deleteBookByIsbn(String isbn) {
-        int i = books.indexOf(new Book(isbn));
-        return books.remove(i);
-    }
-
-    public List<Book> searchBook(String keyword, int limit) {
-        // Search DB for book title containing 'keyword' and return
-        // result page of size 'limit'
-        return new ArrayList<>();
-    }
-
-    public List<Book> getAllNewBooks() {
-        return new ArrayList<>();
-    }
-
-    public List<Book> getBookBy(String author, String category, String language) {
-        return new ArrayList<>();
-    }
-}
-
-
-public class Book {
-
-    private String isbn;
-    private String title;
-    private String author;
-    private Float price;
-
-    public Book() {
-    }
-
-    public Book(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public Book(String title, String author, Float price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-    }
-}
 
 }

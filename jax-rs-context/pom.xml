@@ -76,7 +76,12 @@
                             <extractDir>c:/tmp/servers</extractDir>
                         </zipUrlInstaller>
                     </container>
-
+                    <!--<container>-->
+                        <!--<containerId>glassfish4x</containerId>-->
+                        <!--<zipUrlInstaller>-->
+                            <!--<url>http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip</url>-->
+                        <!--</zipUrlInstaller>-->
+                    <!--</container>-->
                     <deployables>
                         <deployable>
                             <groupId>${project.groupId}</groupId>
