@@ -25,4 +25,7 @@ hs_err_pid*
 
 .gitignore
 .idea/workspace.xml
-jax-rs-context/target/
+java-se/src/main/resources/
+*/target/
+*.iml
+
