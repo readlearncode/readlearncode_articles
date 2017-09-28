@@ -12,17 +12,15 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-public class SimpleJsonProcessingExampleTest {
+public class SimpleStreamingModelExampleTest {
 
     @Test
-    public void loadJsonString()   {
+    public void buildJsonDocument() {
+        JsonObject jsonObject = new SimpleStreamingModelExample().buildJsonDocument();
 
-        JsonObject jsonObject = new SimpleJsonProcessingExample().loadJsonString();
-
-        assertThat(jsonObject.getString("id")).isEqualTo("QWERTY1234");
+        assertThat(jsonObject.getInt("id")).isEqualTo(123456);
         assertThat(jsonObject.getString("title")).isEqualTo("Fun with JSON-Processing");
-        assertThat(jsonObject.getString("author")).isEqualTo("Alex Theedom");
-
+        assertThat(jsonObject.getBoolean("published")).isEqualTo(true);
     }
 
 }

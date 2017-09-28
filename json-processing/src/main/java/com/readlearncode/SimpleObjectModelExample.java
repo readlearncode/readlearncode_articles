@@ -11,10 +11,10 @@ import java.io.StringReader;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-public class SimpleJsonProcessingExample {
+public class SimpleObjectModelExample {
 
     private String json =
-            "{\"id\": \"QWERTY1234\", \"title\": \"Fun with JSON-Processing\", \"author\": \"Alex Theedom\"}";
+            "{\"id\": 123456, \"title\": \"Fun with JSON-Processing\", \"published\": true}";
 
     /**
      * Builds a JsonObject from a Stirng of JSON data.
